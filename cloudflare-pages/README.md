@@ -1,18 +1,35 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Define the frontend
+1. Main page in `src/main.jsx`
+2. Define the routes in `src/App.jsx`
+3. Create the `src/components/posts.jsx` and `src/components/post.jsx` components
+4. Component uses fetch to get data from the API (see below)
+5. Customize the look and feel in `src/index.css`
 
-Currently, two official plugins are available:
+```javascript
+    useEffect(() => {
+        const getPost = async () => {
+            const response = await fetch(`/api/post/${id}`);
+            const postResponse = await response.json();
+            setPost(postResponse);
+        };
+        getPost();
+    }, [id]);
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Backend API using Cloudflare Pages Functions
+5. Create the `functions/api/posts.js` function for the posts list
+6. Create the `functions/api/post/[[id]].js` function for the post detail
+7. Mock data in `functions/api/post/data.js`
+8. Customize the look and feel in `src/index.css`
 
 
 ## Commands
 
 ```bash
  npm install react-router-dom
-
 
 # Add this to your package.json scripts
 "scripts": {
