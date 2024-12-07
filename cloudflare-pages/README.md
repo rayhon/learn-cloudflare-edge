@@ -18,6 +18,16 @@
     }, [id]);
 ```
 
+## UI
+### Post List
+
+![Posts list](./public/images/posts.png)
+
+
+### Post Detail
+![Post detail](./public/images/post-detail.png)
+
+
 
 ## Backend API using Cloudflare Pages Functions
 5. Create the `functions/api/posts.js` function for the posts list
@@ -36,7 +46,7 @@
   "pages:dev": "npx wrangler pages dev -- npm run dev"
 }
 
-# Then you can run
+# Then you can run (Ready on http://localhost:8788)
 npm run pages:dev
 
 ```

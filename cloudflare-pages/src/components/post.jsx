@@ -16,15 +16,19 @@ const Post = () => {
 
     if(!Object.keys(post).length) return <div/>;
     return (
-        <div>
+        <div className="post-detail">
             <h1>{post.title}</h1>
-            <p>{post.text}</p>
-            <p>
-                <em>Published on {new Date(post.published_at).toLocaleString()}</em>
-            </p>
-            <p>
-                <Link to="/">Go back</Link>
-            </p>
+            <div className="post-content">
+                <div className="published-text">
+                    Published on {post.published_at}
+                </div>
+                <div className="post-text">
+                    {post.text}
+                </div>
+            </div>
+            <Link to="/" className="back-link">
+                Go back
+            </Link>
         </div>
     );
 }
