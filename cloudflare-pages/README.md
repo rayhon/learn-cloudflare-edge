@@ -50,23 +50,48 @@ your-project/
 └── package.json # Project dependencies
 ```
 
-## Development
+## Getting Started
+
+First, install dependencies:
 
 ```bash
-# Install dependencies
 npm install
+```
 
+Then, set up your environment:
+
+```bash
+# Create .env.local from template
+npm run setup:env
+
+# Edit .env.local with your KV namespace IDs
+# KV_NAMESPACE_ID=your-production-namespace-id
+# KV_NAMESPACE_PREVIEW_ID=your-preview-namespace-id
+
+# Generate wrangler.toml with your KV IDs
+npm run setup:wrangler
+```
+
+Or you can run the complete setup in one command (but remember to edit .env.local before running any other commands):
+```bash
+npm run setup
+```
+
+Now you can build and run the development server:
+
+```bash
 # build
 npm run build
 
 # Run the development server with Cloudflare Pages
-# Ready on http://localhost:8788
+# Ready on http://localhost:8789
 npm run pages:dev
-
-# deploy
-npm run deploy
 ```
 
+To deploy to production:
+```bash
+npm run deploy
+```
 
 ## Edge Runtime
 * The pages will run on Cloudflare's edge network
@@ -87,32 +112,29 @@ npm run deploy
 
 ## KV Store Setup
 
-This project uses Cloudflare KV for data storage. To set up your development environment:
+```bash
+# create kv namespace (case insensitive)
+wrangler kv:namespace create qa_posts
 
-1. Create a KV namespace in your Cloudflare dashboard:
-   - Go to Workers & Pages > KV
-   - Click "Create a namespace"
-   - Name it something like "blog_posts_dev"
+# create kv namespace for development
+wrangler kv:namespace create qa_posts --preview
 
-2. Get your KV namespace IDs:
-   - After creating, you'll see two IDs:
-     * Regular ID (for production)
-     * Preview ID (for development)
+# update wrangler.toml
+[[kv_namespaces]]
+binding = "QA_POSTS"
+preview_id = "your_preview_id_here"  # For local development
+id = "your_production_id_here"       # For production
 
-3. Update `wrangler.toml`:
-   ```toml
-   [[kv_namespaces]]
-   binding = "QA_POSTS"
-   preview_id = "your_preview_id_here"  # For local development
-   id = "your_production_id_here"       # For production
-   ```
+# upload data from data/posts.json
+wrangler kv:bulk put --binding=QA_POSTS data/posts.json --preview false
+wrangler kv:bulk put --binding=QA_POSTS --preview data/posts.json
 
-4. For production deployment:
-   - Use environment variables in Cloudflare Pages dashboard
-   - Set up the production KV ID there instead of in wrangler.toml
+# list kv namespaces
+wrangler kv:namespace list [--preview]
+# delete kv namespace
+wrangler kv:namespace delete qa_posts [--preview]
 
-Note: Never commit your actual KV IDs to the repository. The IDs in wrangler.toml should always be placeholders.
-
+```
 
 ## Future Enhancements
 * KV Store integration using `wrangler.toml`

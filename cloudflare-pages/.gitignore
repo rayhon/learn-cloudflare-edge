@@ -28,10 +28,13 @@ dist-ssr
 .env
 .env.*
 !.env.example
+!.env.local.template
 !.dev.vars.example
 
 
 # next.js build output
 .next
+# Wrangler configuration
+wrangler.toml
 .wrangler
 out

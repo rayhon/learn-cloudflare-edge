@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "pages:dev": "wrangler pages dev -- npm run dev",
-    "deploy": "next build && wrangler pages deploy .next"
+    "deploy": "next build && wrangler pages deploy .next",
+    "setup:env": "cp .env.local.template .env.local",
+    "setup:wrangler": "node scripts/setup.js",
+    "setup": "npm run setup:env && npm run setup:wrangler"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.4",
@@ -21,6 +24,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
     "eslint": "^8.0.0",
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.49",
