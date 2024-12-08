@@ -1,22 +1,78 @@
-# React + Vite
+# Next JS 14 with Cloudflare Pages
 
-## Define the frontend
-1. Main page in `src/main.jsx`
-2. Define the routes in `src/App.jsx`
-3. Create the `src/components/posts.jsx` and `src/components/post.jsx` components
-4. Component uses fetch to get data from the API (see below)
-5. Customize the look and feel in `src/index.css`
 
-```javascript
-    useEffect(() => {
-        const getPost = async () => {
-            const response = await fetch(`/api/post/${id}`);
-            const postResponse = await response.json();
-            setPost(postResponse);
-        };
-        getPost();
-    }, [id]);
+## Migration from Vite to Next.js
+Next.js is a complete framework that includes: (so vite is not needed)
+* Its own build tool (based on webpack)
+* Development server
+* File-based routing
+* Server-side features
+* API routes
+* Edge runtime support
+
+### Key Changes
+1. **Project Structure**
+   - Moved from Vite to Next.js App Router
+   - Removed Vite files (`vite.config.js`, `index.html`)
+   - Consolidated styles into `src/app/globals.css`
+
+2. **Configuration**
+   - Added `next.config.js` for Cloudflare Pages optimization:     ```javascript
+     const nextConfig = {
+       assetPrefix: process.env.NODE_ENV === 'production' ? '/_next' : '',
+       distDir: '.next',
+       generateBuildId: async () => 'build'
+     }     ```
+   - Updated dependencies in `package.json` to Next.js ecosystem
+
+3. **Routing**
+   - Migrated from React Router to Next.js App Router
+   - Routes structure:
+     * `app/page.jsx` → / (home page)
+     * `app/post/[id]/page.jsx` → /post/123 (dynamic route)
+
+4. **Components**
+   - Added `'use client'` directive for client components
+   - Updated imports to use Next.js components
+   - Maintained component structure in `src/components/`
+
+## Project Structure
+
+```bash
+your-project/
+├── src/
+│ ├── app/ # Next.js pages and layouts
+│ ├── components/ # React components
+│ └── lib/ # Utilities (if needed)
+├── functions/ # Cloudflare Pages Functions
+├── public/ # Static assets
+├── next.config.js # Next.js configuration
+└── package.json # Project dependencies
 ```
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# build
+npm run build
+
+# Run the development server with Cloudflare Pages
+# Ready on http://localhost:8788
+npm run pages:dev
+
+# deploy
+npm run deploy
+```
+
+
+## Edge Runtime
+* The pages will run on Cloudflare's edge network
+* This aligns with your Cloudflare Pages Functions which are also running at the edge
+* You get better performance as both your pages and APIs are running close to your users
+
 
 ## UI
 ### Post List
@@ -29,24 +85,8 @@
 
 
 
-## Backend API using Cloudflare Pages Functions
-5. Create the `functions/api/posts.js` function for the posts list
-6. Create the `functions/api/post/[[id]].js` function for the post detail
-7. Mock data in `functions/api/post/data.js`
-8. Customize the look and feel in `src/index.css`
+## Future Enhancements
+* KV Store integration using `wrangler.toml`
+* Server-side data fetching optimization
+* Enhanced error handling
 
-
-## Commands
-
-```bash
- npm install react-router-dom
-
-# Add this to your package.json scripts
-"scripts": {
-  "pages:dev": "npx wrangler pages dev -- npm run dev"
-}
-
-# Then you can run (Ready on http://localhost:8788)
-npm run pages:dev
-
-```

@@ -1,20 +1,30 @@
+'use client';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 const Post = () => {
     const [post, setPost] = useState({});
-    const { id } = useParams();
+    const params = useParams();
+    const id = params.id;
+
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getPost = async () => {
-            const response = await fetch(`/api/post/${id}`);
-            const postResponse = await response.json();
-            setPost(postResponse);
+            try {
+                const response = await fetch(`/api/post/${id}`);
+                const postResponse = await response.json();
+                setPost(postResponse);
+            } finally {
+                setIsLoading(false);
+            }
         };
         getPost();
     }, [id]);
 
-    if(!Object.keys(post).length) return <div/>;
+    if(isLoading) return <div>Loading...</div>;
+    if(!Object.keys(post).length) return <div>No post found</div>;
     return (
         <div className="post-detail">
             <h1>{post.title}</h1>
@@ -26,7 +36,7 @@ const Post = () => {
                     {post.text}
                 </div>
             </div>
-            <Link to="/" className="back-link">
+            <Link href="/" className="back-link">
                 Go back
             </Link>
         </div>

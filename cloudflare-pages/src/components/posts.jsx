@@ -1,5 +1,6 @@
+'use client';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -19,7 +20,7 @@ const Posts = () => {
             {posts.map(post => (
                 <div key={post.id} className="post-card">
                     <h2 className="post-title">
-                        <Link to={`/post/${post.id}`} className="post-link">
+                        <Link href={`/post/${post.id}`} className="post-link">
                             {post.title}
                         </Link>
                     </h2>
