@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const path = require('path');
+
 const nextConfig = {
   images: {
     unoptimized: true,
@@ -8,10 +9,9 @@ const nextConfig = {
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
     return config;
   },
-  // Add this configuration for proper static file serving
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/_next' : '',
-  distDir: '.next',
-  generateBuildId: async () => 'build'
+  // Configure output for Cloudflare Pages
+  output: 'standalone',
+  distDir: '.next'
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
