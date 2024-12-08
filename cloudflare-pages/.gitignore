@@ -23,10 +23,15 @@ dist-ssr
 *.sln
 *.sw?
 
-# wrangler files
-.wrangler
+# Environment variables
 .dev.vars
+.env
+.env.*
+!.env.example
+!.dev.vars.example
+
 
 # next.js build output
 .next
+.wrangler
 out

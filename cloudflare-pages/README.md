@@ -85,8 +85,36 @@ npm run deploy
 
 
 
+## KV Store Setup
+
+This project uses Cloudflare KV for data storage. To set up your development environment:
+
+1. Create a KV namespace in your Cloudflare dashboard:
+   - Go to Workers & Pages > KV
+   - Click "Create a namespace"
+   - Name it something like "blog_posts_dev"
+
+2. Get your KV namespace IDs:
+   - After creating, you'll see two IDs:
+     * Regular ID (for production)
+     * Preview ID (for development)
+
+3. Update `wrangler.toml`:
+   ```toml
+   [[kv_namespaces]]
+   binding = "QA_POSTS"
+   preview_id = "your_preview_id_here"  # For local development
+   id = "your_production_id_here"       # For production
+   ```
+
+4. For production deployment:
+   - Use environment variables in Cloudflare Pages dashboard
+   - Set up the production KV ID there instead of in wrangler.toml
+
+Note: Never commit your actual KV IDs to the repository. The IDs in wrangler.toml should always be placeholders.
+
+
 ## Future Enhancements
 * KV Store integration using `wrangler.toml`
 * Server-side data fetching optimization
 * Enhanced error handling
-
