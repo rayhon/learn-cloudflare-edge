@@ -44,6 +44,7 @@ const Posts = () => {
     }
 
     const truncateText = (text, maxLength = 150) => {
+        if (!text) return '';
         if (text.length <= maxLength) return text;
         return text.slice(0, maxLength) + '...';
     };
@@ -69,7 +70,7 @@ const Posts = () => {
                         </h2>
                         <p>{truncateText(post.text)}</p>
                         <div className="post-meta">
-                            Published on {formatDate(post.published_at)}
+                            {post.published_at && `Published on ${formatDate(post.published_at)}`}
                         </div>
                         <div className="read-more">
                             <Link href={`/post/${post.id}`} className="read-more-link">

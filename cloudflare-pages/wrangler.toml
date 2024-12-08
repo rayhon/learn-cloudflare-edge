@@ -6,7 +6,6 @@ binding = "QA_POSTS"
 # For development: Create your own KV namespace in Cloudflare dashboard
 # and replace these IDs with your own
 id = "8663cdbd0df44a408ebdbbc5100a6393"
-preview_id = "e04347e2f6b247bc99258427a9a53d27"
 
 [dev]
 port = 8789
