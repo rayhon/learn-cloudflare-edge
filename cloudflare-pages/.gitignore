@@ -34,4 +34,5 @@ dist-ssr
 # next.js build output
 .next
 .wrangler
+.vercel
 out

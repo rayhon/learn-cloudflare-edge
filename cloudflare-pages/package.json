@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:dev": "wrangler pages dev -- npm run dev",
-    "deploy": "next build && wrangler pages deploy .next"
+    "pages:dev": "wrangler pages dev --compatibility-date=2024-09-23 -- npm run dev",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "deploy": "npm run build && npm run pages:build && wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.4",
@@ -17,6 +18,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.6",
     "@types/node": "^20.10.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

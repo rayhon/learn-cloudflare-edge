@@ -2,16 +2,31 @@
 const path = require('path');
 
 const nextConfig = {
+  reactStrictMode: true,
+  // Configure for Cloudflare Pages
+  output: 'standalone',
   images: {
     unoptimized: true,
   },
-  webpack: (config) => {
+  experimental: {
+    appDir: false,
+  },
+  webpack: (config, { isServer }) => {
+    // Add path alias
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+
+    // Handle browser-specific globals
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        process: false,
+      };
+    }
+
     return config;
   },
-  // Configure output for Cloudflare Pages
-  output: 'standalone',
-  distDir: '.next'
 }
 
 module.exports = nextConfig
