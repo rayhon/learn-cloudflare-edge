@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-export const runtime = 'edge'
+export const runtime = 'edge';
 
 export const metadata: Metadata = {
   title: 'Blog Posts - Next.js 14 with Cloudflare Pages',
@@ -22,4 +22,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}

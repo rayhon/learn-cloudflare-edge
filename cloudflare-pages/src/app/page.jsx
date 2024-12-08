@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import Posts from '@/components/posts'
 

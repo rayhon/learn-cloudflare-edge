@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "pages:dev": "wrangler pages dev --compatibility-date=2024-09-23 -- npm run dev",
-    "pages:build": "next build && npx @cloudflare/next-on-pages",
-    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static"
+    "pages:build": "NEXT_PLATFORM=cloudflare next build && npx @cloudflare/next-on-pages",
+    "deploy": "NEXT_PLATFORM=cloudflare npm run pages:build && wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.4",
@@ -18,13 +18,15 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.8.5",
+    "@cloudflare/next-on-pages": "^1.5.0",
+    "@cloudflare/workers-types": "^4.20241205.0",
     "@types/node": "^20.10.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.0.0",
     "eslint-config-next": "14.0.4",
+    "miniflare": "^3.20241205.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.3.3",
