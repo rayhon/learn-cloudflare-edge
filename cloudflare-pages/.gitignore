@@ -26,3 +26,8 @@ dist-ssr
 # wrangler files
 .wrangler
 .dev.vars
+
+# next.js build output
+.next
+out
+
