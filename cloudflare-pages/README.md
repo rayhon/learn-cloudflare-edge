@@ -17,12 +17,15 @@ Next.js is a complete framework that includes: (so vite is not needed)
    - Consolidated styles into `src/app/globals.css`
 
 2. **Configuration**
-   - Added `next.config.js` for Cloudflare Pages optimization:     ```javascript
+   - Added `next.config.js` for Cloudflare Pages optimization:   
+   
+   ```javascript
      const nextConfig = {
        assetPrefix: process.env.NODE_ENV === 'production' ? '/_next' : '',
        distDir: '.next',
        generateBuildId: async () => 'build'
-     }     ```
+     }     
+   ```
    - Updated dependencies in `package.json` to Next.js ecosystem
 
 3. **Routing**
@@ -136,7 +139,3 @@ wrangler kv:namespace delete qa_posts [--preview]
 
 ```
 
-## Future Enhancements
-* KV Store integration using `wrangler.toml`
-* Server-side data fetching optimization
-* Enhanced error handling
