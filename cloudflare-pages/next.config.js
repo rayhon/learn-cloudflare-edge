@@ -8,9 +8,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    appDir: false,
-  },
   webpack: (config, { isServer }) => {
     // Add path alias
     config.resolve.alias['@'] = path.resolve(__dirname, 'src');
@@ -21,7 +18,9 @@ const nextConfig = {
         ...config.resolve.fallback,
         async_hooks: false,
         fs: false,
-        path: false,
+        net: false,
+        tls: false,
+        child_process: false,
       };
     }
     
