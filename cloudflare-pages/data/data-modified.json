@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started with Edge Computing (Updated)",
+    "text": "Edge computing is revolutionizing how we build web applications. This post has been dynamically updated to show KV store modifications in action!",
+    "published_at": "2024-12-09T19:54:18-08:00"
+  },
+  {
+    "id": 2,
+    "title": "Building Fast Websites with Cloudflare Pages",
+    "text": "Cloudflare Pages provides a super fast hosting platform for JAMstack sites with built-in CI/CD, custom domains, and more.",
+    "published_at": "2024-12-09T01:30:00Z"
+  },
+  {
+    "id": 3,
+    "title": "The Future of Web Development",
+    "text": "With technologies like Edge Functions and Web Assembly, we're entering a new era of web development where performance and user experience are paramount.",
+    "published_at": "2024-12-09T02:45:00Z"
+  }
+]

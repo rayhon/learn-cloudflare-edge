@@ -104,6 +104,21 @@ export async function GET(
    npm run preview
    ```
 
+## Local Development
+
+### Managing KV Store Data
+
+You can modify the KV store data locally during development:
+
+1. Update your JSON data file in the `data` directory
+2. Update the local KV store:
+   ```bash
+   npx wrangler kv:key put --local --binding=QA_POSTS post_data --path=data/data-modified.json
+   ```
+3. Verify changes by accessing the API endpoint (e.g., `/api/post/1`)
+
+The changes will be immediately reflected in your local development environment.
+
 ## Deployment
 
 Deploy to Cloudflare Pages:
@@ -122,6 +137,9 @@ npm run deploy
 │   │   ├── layout.tsx        # Root layout
 │   │   └── page.tsx          # Home page
 │   └── components/           # Shared React components
+├── data/                     # Sample data and KV store content
+│   ├── data.json            # Initial data
+│   └── data-modified.json   # Modified data for testing
 ├── public/                   # Static assets
 ├── next.config.js           # Next.js configuration
 ├── package.json             # Project dependencies
