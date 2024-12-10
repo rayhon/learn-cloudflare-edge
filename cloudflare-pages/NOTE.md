@@ -84,7 +84,7 @@ git branch
 # See branch history
 git log --oneline --graph --all
 # See differences between lessons
-git diff "lesson 1" "lesson 2"
+git diff "lesson_1" "lesson_2"
 
 ```
 

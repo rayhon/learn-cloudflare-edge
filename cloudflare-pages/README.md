@@ -67,6 +67,13 @@ npm run pages:dev
 npm run deploy
 ```
 
+### Sample Data
+```bash
+# for local development
+npx wrangler kv:key put --local --binding=QA_POSTS post_data --path data.json
+npx wrangler kv:key get --local --binding=QA_POSTS post_data
+```
+
 
 ## Edge Runtime
 * The pages will run on Cloudflare's edge network

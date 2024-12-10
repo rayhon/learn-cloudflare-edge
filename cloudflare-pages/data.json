@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started with Edge Computing",
+    "text": "Edge computing brings computation and data storage closer to the location where it is needed. This improves response times and saves bandwidth.",
+    "published_at": "2024-12-08T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Building Fast Websites with Cloudflare Pages",
+    "text": "Cloudflare Pages provides a super fast hosting platform for JAMstack sites with built-in CI/CD, custom domains, and more.",
+    "published_at": "2024-12-09T01:30:00Z"
+  },
+  {
+    "id": 3,
+    "title": "The Future of Web Development",
+    "text": "With technologies like Edge Functions and Web Assembly, we're entering a new era of web development where performance and user experience are paramount.",
+    "published_at": "2024-12-09T02:45:00Z"
+  }
+]
